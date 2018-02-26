@@ -1,0 +1,4 @@
+JENKINS_HOSTNAME=192.168.33.250
+JENKINS_SSHD_PORT=8081
+ssh -p $JENKINS_SSHD_PORT -l jenkins $JENKINS_HOSTNAME declarative-linter < Jenkinsfile
+

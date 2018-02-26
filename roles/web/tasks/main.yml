@@ -1,0 +1,28 @@
+- name: install python & python-pip & virtualenv
+  apt:
+    name: "{{item}}"
+  with_items:
+    - python
+    - python-pip
+    - virtualenv
+  become: yes
+
+- name: copy files from ansible host
+  copy:
+    src: "flaskr-0.0.0.tar.gz"
+    dest: /tmp/flaskr.tar.gz
+
+- name: pip install flaskr
+  pip:
+    name: file:///tmp/flaskr.tar.gz
+    virtualenv: venv_flaskr
+    extra_args: '--force-reinstall'
+    chdir: "{{ansible_env.HOME}}"
+    
+- name: install unit file
+  copy:
+    src: "{{ role_path }}/files/flaskr.service"
+    dest: /etc/systemd/system/flaskr.service
+  become: yes
+  notify:
+    - start flaskr

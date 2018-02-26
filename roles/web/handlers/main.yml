@@ -1,0 +1,6 @@
+- name: start flaskr
+  become: yes
+  systemd:
+    name: flaskr.service
+    enabled: yes
+    state: started

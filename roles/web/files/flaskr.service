@@ -1,0 +1,16 @@
+[Unit]
+Description="Flask sample flaskr"
+
+[Service]
+User=vagrant
+Environment=FLASK_APP=flaskr
+WorkingDirectory=/home/vagrant/
+ExecStartPre=/usr/bin/env
+ExecStartPre=/bin/pwd
+ExecStartPre=/home/vagrant/venv_flaskr/bin/flask initdb
+#ExecStart=/bin/echo $FLASK_APP
+ExecStart=/home/vagrant/venv_flaskr/bin/flask run
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
