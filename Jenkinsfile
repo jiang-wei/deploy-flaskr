@@ -15,6 +15,7 @@ pipeline {
         stage('deploy staging') {
             steps {
                 ansiblePlaybook(
+                    installation: 'ansible-2.4.3.0',
                     playbook: 'site.yaml',
                     credentialsId: 'deploy_ssh_private_key',
                     inventory: 'hosts',
@@ -31,6 +32,7 @@ pipeline {
             }
             steps {
                 ansiblePlaybook(
+                    installation: 'ansible-2.4.3.0',
                     playbook: 'site.yaml',
                     credentialsId: 'deploy_ssh_private_key',
                     inventory: 'hosts',
