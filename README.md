@@ -1,1 +1,1 @@
-foo
+have feature foo
